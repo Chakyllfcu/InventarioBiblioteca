@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace ProyectoBiblioteca.Logica
 {
@@ -110,8 +111,9 @@ namespace ProyectoBiblioteca.Logica
                 try
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendLine("select p.IdPersona,p.Nombre,p.Apellido,p.Correo,p.Clave,p.Codigo,tp.IdTipoPersona,tp.Descripcion, p.Estado from persona p");
-                    sb.AppendLine("inner join TIPO_PERSONA tp on tp.IdTipoPersona = p.IdTipoPersona");
+                    //AFP Y ARS CALCULADO DESDE EL SCRIPT DE SQL
+                    sb.AppendLine("select p.IdPersona,p.Nombre,p.Apellido,p.Correo,p.Clave,p.Codigo,tp.IdTipoPersona,tp.Descripcion, p.Estado, ISNULL(p.Salario,0) AS Salario, ISNULL(p.Salario, 0)*0.0298 AS AFP, ISNULL(p.Salario, 0)*0.0302 AS ARS from persona p");
+                    sb.AppendLine("LEFT join TIPO_PERSONA tp on tp.IdTipoPersona = p.IdTipoPersona");
 
                     SqlCommand cmd = new SqlCommand(sb.ToString(), oConexion);
                     cmd.CommandType = CommandType.Text;
@@ -129,8 +131,13 @@ namespace ProyectoBiblioteca.Logica
                                 Correo = dr["Correo"].ToString(),
                                 Clave = dr["Clave"].ToString(),
                                 Codigo = dr["Codigo"].ToString(),
+                                Salario = Convert.ToInt32(dr["Salario"]),
+                                AFP = Convert.ToInt32(dr["AFP"]),
+                                ARS = Convert.ToInt32(dr["ARS"]),
+                                SalarioNeto = (Convert.ToInt32(dr["Salario"]) - Convert.ToInt32(dr["AFP"])) - Convert.ToInt32(dr["ARS"]),
                                 oTipoPersona = new TipoPersona() { IdTipoPersona = Convert.ToInt32(dr["IdTipoPersona"]), Descripcion = dr["Descripcion"].ToString() },
-                                Estado = Convert.ToBoolean(dr["Estado"])
+                                Estado = Convert.ToBoolean(dr["Estado"]),
+
                             });
                         }
                     }

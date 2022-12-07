@@ -26,6 +26,10 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Correo</th>
+                                <th>Salario</th>
+                                <th>AFP</th>
+                                <th>ARS</th>
+                                <th>SalarioNeto</th>
                                 <th>Tipo</th>
                                 <th>Estado</th>
                                 <th></th>
@@ -36,6 +40,10 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Correo</th>
+                                <th>Salario</th>
+                                <th>AFP</th>
+                                <th>ARS</th>
+                                <th>SalarioNeto</th>
                                 <th>Tipo</th>
                                 <th>Estado</th>
                                 <th></th>
@@ -160,12 +168,22 @@
                 "ajax": {
                     "url": '@Url.Action("ListarPersona", "Biblioteca")',
                     "type": "GET",
-                    "datatype": "json"
+                    "datatype": "json",
+                    "dataSrc": function (json) {
+
+                        return json.data.filter(function (item) {
+                            return item.oTipoPersona.IdTipoPersona != 3;
+                        });
+                    }
                 },
                 "columns": [
                     { "data": "Nombre" },
                     { "data": "Apellido" },
                     { "data": "Correo" },
+                    { "data": "Salario" },
+                    { "data": "AFP" },
+                    { "data": "ARS" },
+                    { "data": "SalarioNeto" },
                     {
                         "data": "oTipoPersona", "render": function (data) {
                             return data.Descripcion

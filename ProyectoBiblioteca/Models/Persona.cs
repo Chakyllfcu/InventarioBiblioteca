@@ -13,7 +13,13 @@ namespace ProyectoBiblioteca.Models
         public string Correo { get; set; }
         public string Clave { get; set; }
         public string Codigo { get; set; }
+        public int Salario { get; set; }
+        public int AFP { get; set; }
+        public int ARS { get; set; }
+        public int SalarioNeto { get; set; }
         public TipoPersona oTipoPersona { get; set; }
         public bool Estado { get; set; }
+
+
     }
 }
