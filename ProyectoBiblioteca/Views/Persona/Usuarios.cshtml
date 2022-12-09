@@ -100,6 +100,14 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
+                                <label for="txtdescripcion">Salario:</label>
+                                <input type="text" class="form-control required" id="txtSalario" name="descripcion" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
                                 <label for="txtdescripcion">Contraseña:</label>
                                 <input type="password" class="form-control required" id="txtclave" name="descripcion" autocomplete="off">
                             </div>
@@ -236,6 +244,7 @@
             $("#txtapellido").val("");
             $("#txtcorreo").val("");
             $("#txtclave").val("");
+            $("#txtcSalario").val("");
             $("#cbotipo").val(1);
             $("#cboEstado").val(1);
 
@@ -246,6 +255,7 @@
                 $("#txtapellido").val(json.Apellido);
                 $("#txtcorreo").val(json.Correo);
                 $("#txtclave").val(json.Clave);
+                $("#txtSalario").val(json.Salario);
                 $("#cbotipo").val(json.oTipoPersona.IdTipoPersona);
                 $("#cboEstado").val(json.Estado == true ? 1 : 0);
             }
@@ -287,6 +297,7 @@
                     Apellido: $("#txtapellido").val(),
                     Correo: $("#txtcorreo").val(),
                     Clave: $("#txtclave").val(),
+                    Clave: $("#txtSalario").val(),
                     oTipoPersona: { IdTipoPersona : $("#cbotipo option:selected").val() },
                     Estado: parseInt($("#cboEstado").val()) == 1 ? true : false
                 }

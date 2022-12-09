@@ -46,6 +46,7 @@ namespace ProyectoBiblioteca.Logica
                     cmd.Parameters.AddWithValue("Apellido", objeto.Apellido);
                     cmd.Parameters.AddWithValue("Correo", objeto.Correo);
                     cmd.Parameters.AddWithValue("Clave", objeto.Clave);
+                    cmd.Parameters.AddWithValue("Salario", objeto.Salario);
                     cmd.Parameters.AddWithValue("IdTipoPersona", objeto.oTipoPersona.IdTipoPersona);
                     cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -78,6 +79,7 @@ namespace ProyectoBiblioteca.Logica
                     cmd.Parameters.AddWithValue("Apellido", objeto.Apellido);
                     cmd.Parameters.AddWithValue("Correo", objeto.Correo);
                     cmd.Parameters.AddWithValue("Clave", objeto.Clave);
+                    cmd.Parameters.AddWithValue("Salario", objeto.Salario);
                     cmd.Parameters.AddWithValue("IdTipoPersona", objeto.oTipoPersona.IdTipoPersona);
                     cmd.Parameters.AddWithValue("Estado", objeto.Estado);
                     cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
